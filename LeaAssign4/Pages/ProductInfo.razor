@@ -1,0 +1,56 @@
+﻿@page "/productinfo"
+@using Models
+
+<h3>Product Information</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Units In Stock
+            </th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+            @foreach(var prod in products)
+            {
+                <tr>
+                <td>@prod.Id</td>
+                <td>@prod.Name</td>
+                <td>@prod.Price</td>
+                <td>@prod.UnitsInStock</td>
+                </tr>
+            }
+
+            <tr>
+                <td></td>
+                <td></td>
+ 
+            </tr>
+    </tbody>
+
+</table>
+
+@code {
+    inventoryContext db = new inventoryContext();
+
+    private List<Product> products;
+
+    protected override void OnInitialized()
+    {
+        products = db.Products.ToList();
+    }
+
+
+}
